@@ -1,0 +1,1 @@
+sudo cloud-provider-kind --gateway-channel standard

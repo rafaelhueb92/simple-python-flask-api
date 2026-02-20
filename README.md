@@ -6,13 +6,19 @@ A minimal Flask application demonstrating a simple web server with a form-based 
 
 ```
 .
-├── dockerfile          # Docker configuration
-├── requirements.txt    # Python dependencies
-├── README.md          # This file
-└── src/
-    ├── app.py         # Flask application
-    └── templates/
-        └── name.html  # User input form
+├── dockerfile              # Docker configuration
+├── requirements.txt        # Python dependencies
+├── README.md              # This file
+├── .gitignore             # Git ignore rules
+├── src/                   # Application source
+│   ├── app.py             # Flask application
+│   └── templates/
+│       └── name.html      # User input form
+└── charts/
+    └── flask-app/         # Helm chart for Kubernetes deployment
+        ├── Chart.yaml
+        ├── values.yaml
+        └── templates/
 ```
 
 ## Requirements
@@ -80,6 +86,50 @@ The Flask app runs on:
 - **Host**: `0.0.0.0` (all interfaces)
 - **Port**: `5000`
 - **Debug**: Enabled (can be disabled in production)
+
+## Kubernetes Deployment
+
+This project includes a Helm chart for Kubernetes deployment.
+
+### Prerequisites
+
+- Kubernetes cluster (1.20+)
+- Helm 3.0+
+
+### Deployment
+
+1. Install the Helm chart:
+
+```bash
+helm install flask-app ./charts/flask-app
+```
+
+2. Access the application:
+
+```bash
+kubectl port-forward svc/flask-app 5000:5000
+```
+
+The application will be available at `http://localhost:5000`
+
+### Configuration
+
+Customize the deployment by modifying `charts/flask-app/values.yaml`:
+
+- **replicaCount**: Number of pod replicas (default: 1)
+- **image.repository**: Docker image repository
+- **image.tag**: Docker image tag (default: latest)
+- **service.port**: Service port (default: 5000)
+- **ingress.hosts**: Ingress host configuration (default: flask-app.test.com)
+- **resources**: CPU and memory limits
+
+### Example with Custom Values
+
+```bash
+helm install flask-app ./charts/flask-app \
+  --set replicaCount=3 \
+  --set image.tag=v1.0
+```
 
 ## Development
 
