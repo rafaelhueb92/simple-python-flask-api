@@ -24,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: rafahueb/flask-beta3:${{ github.sha}}
+          tags: rafahueb/flask-beta3:${${{ github.sha}}:0:7}
