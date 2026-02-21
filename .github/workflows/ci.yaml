@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - src/**
+      - .github/workflows/ci.yaml
     branches:
       - main
 
@@ -23,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: rafahueb/flask-beta3:${GITHUB_SHA::6}
+          tags: rafahueb/flask-beta3:${{ github.sha}}
