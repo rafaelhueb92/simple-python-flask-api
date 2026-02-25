@@ -29,7 +29,8 @@ def login():
     return render_template('name.html')
 
 if __name__ == '__main__':
-    start_http_server(8000)
-    print(f"Metrics available at http://{gethostname()}:8000/metrics")
+    PROMETHEUS_PORT=8001
+    start_http_server(PROMETHEUS_PORT)
+    print(f"Metrics available at http://{gethostname()}:{PROMETHEUS_PORT}/metrics")
     
-    app.run(host="0.0.0.0", port=5000,debug=True)
+    app.run(host="0.0.0.0", port=5002,debug=True, use_reloader=False)
