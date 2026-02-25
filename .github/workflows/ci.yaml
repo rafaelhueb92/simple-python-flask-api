@@ -5,6 +5,7 @@ on:
     paths:
       - src/**
       - .github/workflows/ci.yaml
+      - dockerfile
     branches:
       - main
 
