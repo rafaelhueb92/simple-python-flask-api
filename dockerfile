@@ -12,7 +12,6 @@ WORKDIR /app
 COPY src/ .
 COPY --from=base /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 
-EXPOSE 5000
-EXPOSE 8000
+EXPOSE 5002 8001
 
 CMD ["python", "app.py"]
