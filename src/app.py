@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template, jsonify
 from socket import gethostname
+from flask import Flask, request, render_template, jsonify
+from prometheus_client import start_http_server
 
 app = Flask(__name__)
 
@@ -28,4 +29,7 @@ def login():
     return render_template('name.html')
 
 if __name__ == '__main__':
+    start_http_server(8000)
+    print(f"Metrics available at http://{gethostname()}:8000/metrics")
+    
     app.run(host="0.0.0.0", port=5000,debug=True)
