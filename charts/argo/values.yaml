@@ -32,3 +32,5 @@ server:
     tls:
       - hosts:
           - argocd.test.com
+  extraArgs:
+    - --insecure
