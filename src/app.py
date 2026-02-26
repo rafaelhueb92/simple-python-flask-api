@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World! This is a simple Flask API.'
+    return 'Hello World! This is a simple Flask API. YEAH!'
 
 @app.route('/json')
 def json_response():
